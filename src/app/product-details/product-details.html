@@ -1,0 +1,32 @@
+<div class="product-details-container">
+  <button class="back-btn" (click)="toProductListPage()">
+    Back to product list page
+  </button>
+  <div class="product-details-card">
+    <div class="details-title">{{ productData.title }}</div>
+    <div class="details-category">{{ productData.category}}</div>
+    <div class="details-image-wrapper">
+      <img class="product-image" src="{{ productData.image }}" alt="" />
+      <div class="product-rating">
+        <div class="product-price">Price: ${{ productData.price}}</div>
+        <div class="stars-container">
+          <mat-icon
+            *ngFor="let in of counter(productData.rating.rate) ;let i = index"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="star"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="isNumberInteger(productData.rating.rate)"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="star_half"
+          ></mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="product-description">{{ productData.description }}</div>
+    <button class="cart-btn">ADD TO CART</button>
+  </div>
+</div>

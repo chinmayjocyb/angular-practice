@@ -1,0 +1,40 @@
+<div class="card-group">
+  @for (item of ListData; track item) {
+  <div class="product-card" (click)="toProductDetailsPage(item.id)">
+    <div class="card-title">{{ item.title }}</div>
+    <img class="product-image" src="{{ item.image }}" alt="" />
+    <div class="card-divider"></div>
+    <div class="card-footer">
+      <div class="card-rating-wrapper">
+        <div class="card-price">
+          Price:
+          <span class="card-price-color"> ${{ item.price }}</span>
+        </div>
+        <div class="card-rating-container">
+          <div class="card-count">{{ item.rating.count }}</div>
+          <div class="card-footer-divider"></div>
+          <div
+            [ngClass]="item.rating.rate > 3 ? 'card-green-rating' : 'card-red-rating'"
+          >
+            {{ item.rating.rate }}
+          </div>
+        </div>
+      </div>
+      <div class="stars-container">
+        <mat-icon
+          *ngFor="let in of counter(item.rating.rate) ;let i = index"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="star"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="isNumberInteger(item.rating.rate)"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="star_half"
+        ></mat-icon>
+      </div>
+    </div>
+  </div>
+  }
+</div>

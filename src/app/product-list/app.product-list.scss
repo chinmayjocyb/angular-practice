@@ -1,0 +1,90 @@
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 160px;
+  row-gap: 30px;
+  padding: 50px;
+}
+
+.product-card {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #f8faf4;;
+  border-radius: 10px;
+  padding: 10px 0 0;
+  align-items: center;
+  gap: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.card-title {
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.product-image {
+  height: 100px;
+  width: 100px;
+}
+
+.card-divider {
+  height: 1px;
+  background: #ddddd9;
+  width: 100%;
+}
+
+.card-footer {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-price {
+}
+
+.card-price-color {
+  color: green;
+}
+
+.card-rating-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px 0;
+}
+
+.card-rating-container {
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+}
+
+.card-count {
+}
+
+.card-footer-divider {
+  height: 50%;
+  background: #383836;
+  width: 2px;
+}
+
+.card-red-rating {
+  color: red;
+}
+
+.card-green-rating {
+  color: green;
+}
+
+.stars-container {
+  display: flex;
+  justify-content: flex-end;
+  color: #df9f08;
+}
