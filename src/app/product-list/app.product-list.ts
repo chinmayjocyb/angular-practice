@@ -26,7 +26,6 @@ export class ProductListComponent {
     this.httpService.getProductsList();
     this.$products = this.store.select(state => state.product);  
     this.$products.subscribe(data=>{
-      console.log(data);
       this.ListData = data;
     })
   }
