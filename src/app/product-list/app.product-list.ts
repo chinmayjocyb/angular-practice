@@ -3,9 +3,9 @@ import { Router, RouterOutlet } from '@angular/router';
 import { HttpService } from '../service/app.service';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-
-import { IProductList } from '../product-details/product-details';
-
+import { AppState, IProductList } from '../product-store/product-state';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'product-list',
@@ -17,15 +17,21 @@ import { IProductList } from '../product-details/product-details';
 export class ProductListComponent {
   title = 'products list';
   ListData: IProductList[] | undefined;
+  $products: Observable<IProductList[]>;
   constructor(
     private router: Router,
     private httpService: HttpService,
-  ) {}
+    private store: Store<AppState>
+  ) {
+    this.httpService.getProductsList();
+    this.$products = this.store.select(state => state.product);  
+    this.$products.subscribe(data=>{
+      console.log(data);
+      this.ListData = data;
+    })
+  }
 
   ngOnInit() {
-    this.httpService.getProductsList().subscribe({
-      next: (v) => (this.ListData = v),
-    });
   }
   counter(num: number) {
     const numberOfStars = Math.floor(num);

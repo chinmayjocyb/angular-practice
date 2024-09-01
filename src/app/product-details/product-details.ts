@@ -3,19 +3,9 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HttpService } from '../service/app.service';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-
-export interface IProductList {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { AppState, IProductList } from '../product-store/product-state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'product-details',
@@ -26,11 +16,20 @@ export interface IProductList {
 })
 export class ProductDetailsComponent {
   title = 'products details';
+  $products: Observable<IProductList[] | undefined>;
+  ListData1: IProductList[] | undefined;
   constructor(
     private httpService: HttpService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private store: Store<AppState>
+  ) {
+    this.$products = this.store.select('product');  
+    this.$products.subscribe((data: any)=>{
+      console.log('products=>',data, this.$products)
+      this.ListData1 = data;
+    }) 
+  }
   emptyProductData = {
     id: 0,
     title: '',

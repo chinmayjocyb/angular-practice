@@ -1,20 +1,31 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { routes } from './app.routes';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
+
+
 import { AppComponent } from './app.component';
+
+import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './product-details/product-details';
 import { ProductListComponent } from './product-list/app.product-list';
-
+import { AppRoutingModule } from './app.routes';
+import { addProductReducer } from './product-store/product-list-reducer';
 
 @NgModule({
-  declarations: [AppComponent, ProductDetailsComponent, ProductListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    routes,
-    HttpClientModule, //imported the module
+    AppRoutingModule,
+    HttpClientModule,
+    ProductDetailsComponent,
+    ProductListComponent,
+    StoreModule.forRoot({ product: addProductReducer }),
   ],
-  providers: [],
+  providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
