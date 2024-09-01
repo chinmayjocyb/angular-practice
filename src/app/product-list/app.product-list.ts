@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { HttpService } from '../service/app.service';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { AppState, IProductList } from '../product-store/product-state';
@@ -20,10 +19,8 @@ export class ProductListComponent {
   $products: Observable<IProductList[]>;
   constructor(
     private router: Router,
-    private httpService: HttpService,
     private store: Store<AppState>
   ) {
-    this.httpService.getProductsList();
     this.$products = this.store.select(state => state.product);  
     this.$products.subscribe(data=>{
       this.ListData = data;

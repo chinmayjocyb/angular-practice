@@ -1,6 +1,5 @@
-
-
 import { Component } from '@angular/core';
+import { HttpService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProductDetails';
+  constructor(
+    private httpService: HttpService,
+  ) {
+    this.httpService.getProductsList();
+  }
 }
 
